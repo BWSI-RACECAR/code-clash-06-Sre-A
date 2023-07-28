@@ -43,34 +43,30 @@ Input: [3, 3, 3, 3, 4, 7] Output: [5, 6]
 
 """
 class Solution:
-    def findMissingNumbers(self, numbers):
-            #type numbers: list of float
-            #return type: list of int
-        if not numbers:
+    def findMissingNumbers(self, numbersa):
+        if len(numbersa) == 0:
             return "Invalid input"
-        if len(numbers) == 1:
-            return "None missing"
-
-        lowest = min(numbers)
-        highest = max(numbers)
-        missing = []
-        for i in range(lowest, highest + 1):
-            if i not in numbers:
-                missing.append(i)
-            
-            return missing
-            #TODO: Write code below to return an int list with the solution to the prompt.
-            pass
+        if len(numbersa) == 1:
+            return("None missing")
+        numbers = []
+        numbersa.sort()
+        for i in numbersa:
+            if i in numbers:
+                continue
+            else:
+                numbers.append(round(i))
+        end = []
+        for i in range(numbers[0], numbers[-1]+1):
+            end.append(i)
+        return list(set(end) - set(numbers))
 
 def main():
     array = input().split(" ")
     for x in range (0, len(array)):
         array[x] = float(array[x])
-
     tc1 = Solution()
     ans = tc1.findMissingNumbers(array)
     print(ans)
-
 if __name__ == "__main__":
     main()
     
